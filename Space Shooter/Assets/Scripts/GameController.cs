@@ -7,16 +7,20 @@ public class GameController : MonoBehaviour
 {
     public GameObject[] hazards;
     public Vector3 spawnValues;
+    public bool win;
     public int hazardCount;
     public float spawnWait;
     public float startWait;
     public float waveWait;
+    public Mover mover;
+    public bool hardMode;
     public AudioSource musicSource;
     public AudioClip musicClipOne;
     public AudioClip musicClipTwo;
     public AudioClip musicClipThree;
 
     public Text scoreText;
+    public Text hardText;
     public Text winText;
     public Text restartText;
     public Text gameOverText;
@@ -28,6 +32,7 @@ public class GameController : MonoBehaviour
     {
         gameOver = false;
         restart = false;
+        win = false;
         restartText.text = "";
         gameOverText.text = "";
         winText.text = "";
@@ -36,6 +41,7 @@ public class GameController : MonoBehaviour
         StartCoroutine(SpawnWaves());
         musicSource.clip = musicClipOne;
         musicSource.Play();
+        hardMode = false;
     }
     
     void Update()
@@ -44,12 +50,30 @@ public class GameController : MonoBehaviour
         {
             Application.Quit();
         }
+        if (Input.GetKeyDown("r"))
+        {
+            hardMode = true;
+        }
+        if (hardMode == true)
+        {
+            Mover.speed = -15;
+            hardText.text = "Hard Mode: On";
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            hardMode = false;
+        }
+        if (hardMode == false)
+        {
+            Mover.speed = -8;
+            hardText.text = "Hard Mode: Off";
+        }
         
         if (restart)
         {
             if (Input.GetKey(KeyCode.Tab))
             {
-                SceneManager.LoadScene("Challenge 3");
+                SceneManager.LoadScene("Final");
             }
         }
     }
@@ -74,6 +98,7 @@ public class GameController : MonoBehaviour
                 restart = true;
                 break;
             }
+            
         }
     }
 
@@ -93,16 +118,24 @@ public class GameController : MonoBehaviour
             musicSource.Stop();
             musicSource.clip = musicClipTwo;
             musicSource.Play();
+            win = true;
             gameOver = true;
             restart = true;
         }
     }
     public void GameOver()
     {
-        gameOverText.text = "Game Over";
         gameOver = true;
-        musicSource.Stop();
-        musicSource.clip = musicClipThree;
-        musicSource.Play();
+        if (score < 100)
+        {
+            gameOverText.text = "Game Over";
+            musicSource.Stop();
+            musicSource.clip = musicClipThree;
+            musicSource.Play();
+            gameOver = true;
+        }
+        
+
+       
     }
 }

@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6203268536142607582}
   - component: {fileID: 6203268536142607571}
   - component: {fileID: 6203268536142607570}
-  - component: {fileID: 6203268536142607572}
-  - component: {fileID: 6203268536142607575}
   - component: {fileID: 6203268536142607573}
+  - component: {fileID: 2086089970821831244}
+  - component: {fileID: 5552267195818519599}
   m_Layer: 0
   m_Name: Enemy Ship
   m_TagString: Enemy
@@ -100,42 +100,6 @@ MonoBehaviour:
   shotSpawn: {fileID: 6203268536617647254}
   fireRate: 1.5
   delay: 0.5
---- !u!114 &6203268536142607572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6203268536142607583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d87f8f104b4170043abd1fa1148756fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -5
---- !u!114 &6203268536142607575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6203268536142607583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b804691018e824298b06860af52778, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startWait: {x: 0.5, y: 1}
-  maneuverTime: {x: 1, y: 2}
-  maneuverWait: {x: 1, y: 2}
-  dodge: 5
-  smoothing: 7.5
-  tilt: 10
-  boundary:
-    xMin: -6
-    xMax: 6
-    zMin: -20
-    zMax: 20
 --- !u!82 &6203268536142607573
 AudioSource:
   m_ObjectHideFlags: 0
@@ -232,6 +196,42 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2086089970821831244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6203268536142607583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 064510c14f86f0c43b3034953770a45a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpeed: -8
+--- !u!114 &5552267195818519599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6203268536142607583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89b804691018e824298b06860af52778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWait: {x: 0.5, y: 1}
+  maneuverTime: {x: 1, y: 2}
+  maneuverWait: {x: 1, y: 2}
+  dodge: 5
+  smoothing: 7.5
+  tilt: 10
+  boundary:
+    xMin: -6
+    xMax: 6
+    zMin: -20
+    zMax: 20
 --- !u!1 &6203268536617647255
 GameObject:
   m_ObjectHideFlags: 0

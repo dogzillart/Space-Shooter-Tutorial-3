@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float tilt;
+    public float RFBoostValue = 0.005f;
+    private bool isActive = false;
     public Boundary boundary;
     public GameObject shot;
     public Transform shotSpawn;
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
             musicSource.clip = musicClipOne;
             musicSource.Play();
         }
-       
+
     }
 
     private void Start()
@@ -55,5 +57,22 @@ public class PlayerController : MonoBehaviour
         );
 
         rb.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -tilt);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.tag == "Pickup" && isActive == false)
+        {
+            isActive = true;
+            Destroy(other.gameObject);
+            StartCoroutine(PowerUpWearOff(2f));  //start the time function
+        }
+    }
+    IEnumerator PowerUpWearOff(float waitTime)
+    {
+        fireRate -= RFBoostValue; // add boost
+        yield return new WaitForSeconds(waitTime);
+        fireRate += RFBoostValue; // remove boost
+        isActive = false;
     }
 }
